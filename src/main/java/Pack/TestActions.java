@@ -1,5 +1,6 @@
 package Pack;
 
+import org.opencv.core.Mat;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -16,6 +17,7 @@ public class TestActions {
 	static ChromeDriver driver = null;
 	static WebElement element = null;
 	static ExtentHTML extenthtml;
+	static String ElemntScreenshotPath = null;
 	static String priScreenshotPath = null;
 	static String postScreenshotPath = null;
 
@@ -88,7 +90,9 @@ public class TestActions {
 			System.out.println("element:" + element + "  is displayed:" + element.isDisplayed());
 
 			SupportLib.moveToElement(driver, element);
-			priScreenshotPath = SupportLib.takePreScreenShot(driver,element, actionId, stepNo + "_pre");
+			priScreenshotPath = SupportLib.takeElementScreenShot(driver,element, actionId, stepNo + "_pre");
+
+			ElemntScreenshotPath = SupportLib.takeElementScreenShot(driver,element, actionId, stepNo + "_pre");
 
 
 
@@ -103,7 +107,7 @@ public class TestActions {
 			else {
 				System.out.println("other occur------------");
 
-				JavascriptExecutor executor = (JavascriptExecutor) driver;
+				JavascriptExecutor executor = driver;
 
 				executor.executeScript("arguments[0].click();", element);
 
@@ -112,6 +116,18 @@ public class TestActions {
 			Thread.sleep(5000);
 			postScreenshotPath = SupportLib.takeScreenShot(driver, actionId, stepNo + "_post");
 
+			
+		
+//		
+//		Mat img2=	SupportLib.bufferedImageToMat(SupportLib.loadImage(postScreenshotPath));
+//
+//		
+//		Mat img1=	SupportLib.bufferedImageToMat(SupportLib.loadImage(priScreenshotPath));
+//
+//			long diff =SupportLib.findDiffPercentbeforConverting(img1,img2);
+//			
+//			System.out.println("diffrence is "+diff);
+			
 			ExtentHTML.pass(stepNo, actionId, "using selector  " + selector + " click performed sucessfully",
 					priScreenshotPath, postScreenshotPath);
 
@@ -152,7 +168,7 @@ public class TestActions {
 		System.out.println(" Pending Performing Action Select");
 		priScreenshotPath = SupportLib.takeScreenShot(driver, actionId, stepNo + "_pre");
 
-		String arr[] = Selector.split("---");
+		String[] arr = Selector.split("---");
 
 		element = driver.findElement(By.xpath(arr[0]));
 
@@ -170,7 +186,7 @@ public class TestActions {
 
 		System.out.println("Performing Action Input");
 
-		String arr[] = SelectorAndData.split("---");
+		String[] arr = SelectorAndData.split("---");
 
 		try {
 			element = driver.findElement(By.xpath(arr[0]));

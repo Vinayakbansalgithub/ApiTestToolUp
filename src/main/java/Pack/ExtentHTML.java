@@ -19,7 +19,7 @@ public class ExtentHTML {
 
 	ExtentHTML(String testName) throws Exception {
 
-		this.testName = testName;
+		ExtentHTML.testName = testName;
 		String destDir = ApiTest.path + "/src/main/resources/ApiScreeshots/" + testName;
 
 		File file = new File(destDir);
@@ -46,7 +46,7 @@ public class ExtentHTML {
 	public static void pass(int stepNo, String actionId, String msg, String priScreenshotPath,
 			String postScreenshotPath) {
 
-		testrep.log(LogStatus.PASS, "Step " + stepNo + " " + actionId, msg.toString());
+		testrep.log(LogStatus.PASS, "Step " + stepNo + " " + actionId, msg);
 
 		testrep.log(LogStatus.PASS, "pre and post screenshot for step: " + stepNo,
 				testrep.addScreenCapture(priScreenshotPath) + " " + testrep.addScreenCapture(postScreenshotPath));
@@ -55,7 +55,7 @@ public class ExtentHTML {
 
 	public static void fail(int stepNo, String actionId, String msg, String priScreenshotPath,
 			String postScreenshotPath) {
-		testrep.log(LogStatus.FAIL, "Step " + stepNo + " " + actionId, msg.toString());
+		testrep.log(LogStatus.FAIL, "Step " + stepNo + " " + actionId, msg);
 
 		testrep.log(LogStatus.FAIL, "pre and post screenshot for step: " + stepNo,
 				testrep.addScreenCapture(priScreenshotPath) + " " + testrep.addScreenCapture(postScreenshotPath));
@@ -65,7 +65,7 @@ public class ExtentHTML {
 	public static void Skip(int stepNo, String actionId, String msg, String priScreenshotPath,
 			String postScreenshotPath) {
 
-		testrep.log(LogStatus.SKIP, "Step " + stepNo + " " + actionId, msg.toString());
+		testrep.log(LogStatus.SKIP, "Step " + stepNo + " " + actionId, msg);
 
 		testrep.log(LogStatus.SKIP, "pre and post screenshot for step: " + stepNo,
 				testrep.addScreenCapture(priScreenshotPath) + " " + testrep.addScreenCapture(postScreenshotPath));

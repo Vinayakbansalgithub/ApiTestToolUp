@@ -40,16 +40,18 @@ public class ApiTest {
 
 
 
-		FileReader reader = new FileReader(path + "/src/main/resources/TestCase.properties");
+		FileReader reader = new FileReader(path + "/TestCase.properties");
 
 		Properties p = new Properties();
 		p.load(reader);
 
-		System.out.println(p.getProperty("functionize_access_token"));
 		System.out.println(p.getProperty("test_id"));
 
+		String token=ParseApi.getAccesstoken("https://app.functionize.com/api/oapi?method=generateToken&apikey=0bbb37bac7d8a20a2597abf72cd8bdde&secret=635026cd73f298bbc8238f1e018c161c");
+		System.out.println(token);
+
 		String Keyurl = "https://release.functionize.com/api/oapi/getTestDetails?accesstoken="
-				+ p.getProperty("functionize_access_token") + "&testid=" + p.getProperty("test_id")
+				+ token + "&testid=" + p.getProperty("test_id")
 				+ "&response_type=json";
 
 		res = given().when().get(
@@ -71,7 +73,7 @@ public class ApiTest {
 
 			Keyurl = Keyurl.replace("givenToken", access_token);
 			res = given().when().get(Keyurl);
-			System.out.println("");
+			System.out.println();
 
 			responseBody = res.getBody().asString();
 

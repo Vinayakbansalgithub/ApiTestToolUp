@@ -64,7 +64,7 @@ public class HelloWorld {
 
 
 
-        JavascriptExecutor js=(JavascriptExecutor)driver;
+        JavascriptExecutor js= driver;
 
         // find element using id attribute
 
