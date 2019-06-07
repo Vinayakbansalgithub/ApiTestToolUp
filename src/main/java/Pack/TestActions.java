@@ -242,6 +242,8 @@ public class TestActions {
 
 		postScreenshotPath = SupportLib.takeScreenShot(driver, actionId, "masterpass" + "_post");
 
+		
+		// blur event to clock search dropdowns
 		// SupportLib.blurEvent(driver, element);
 
 	}
