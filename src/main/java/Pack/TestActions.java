@@ -250,6 +250,7 @@ public class TestActions {
 		ExtentHTML.extent.endTest(ExtentHTML.testrep);
 		ExtentHTML.extent.flush();
 		driver.quit();
+		System.out.println("Everything ends here");
 
 	}
 
