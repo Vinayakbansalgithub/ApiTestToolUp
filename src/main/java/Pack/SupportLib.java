@@ -71,12 +71,11 @@ static{ loadLibrary(); }
 	            }
 	        } else if(osName.equals("Mac OS X")){
 	        	
-	        	//in = VisionUtils.class.getResourceAsStream("/libopencv_java300.dylib");
-	        	File f = new File("./libopencv_java300.dylib");
+	        	File f = new File("/Users/vinayakbansal/eclipse-workspace/APITestTool/libopencv_java300.dylib");
 	        	if (f.exists())
 	        		in = new FileInputStream(f);
 	        	else
-	        		in = new FileInputStream(new File("./libopencv_java300.dylib"));
+	        		in = new FileInputStream(new File("/Users/vinayakbansal/eclipse-workspace/APITestTool/libopencv_java300.dylib"));
 	            fileOut = File.createTempFile("lib", ".dylib");
 	        }else if(osName.equals("Linux")){
 	        	

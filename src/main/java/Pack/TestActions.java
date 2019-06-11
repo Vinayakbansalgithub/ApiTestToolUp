@@ -22,20 +22,19 @@ public class TestActions {
 	static String postScreenshotPath = null;
 
 	TestActions(String testName) throws Exception {
-		System.setProperty("webdriver.chrome.driver", ApiTest.path +"/Drivers/chromedriver");
+		System.setProperty("webdriver.chrome.driver",
+				"/Users/vinayakbansal/eclipse-workspace/jenkins_docker/chromedriver");
 
-		//	Proxy p=new Proxy();
-
+		// Proxy p=new Proxy();
 
 		// Set HTTP Port to 7777
-		//	p.setHttpProxy("104.155.166.119:3128");
+		// p.setHttpProxy("104.155.166.119:3128");
 
 		// Create desired Capability object
-		DesiredCapabilities cap=new DesiredCapabilities();
+		DesiredCapabilities cap = new DesiredCapabilities();
 
 		// Pass proxy object p
 //		cap.setCapability(CapabilityType.PROXY, p);
-
 
 		driver = new ChromeDriver(cap);
 		driver.manage().deleteAllCookies();
@@ -57,8 +56,7 @@ public class TestActions {
 
 		postScreenshotPath = SupportLib.takeScreenShot(driver, actionId, stepNo + "_post");
 
-		ExtentHTML.pass(stepNo, actionId, "Url  " + baseurl + addOn + " has opened sucessfully", "",
-				"");
+		ExtentHTML.pass(stepNo, actionId, "Url  " + baseurl + addOn + " has opened sucessfully", "", "");
 
 	}
 
@@ -90,11 +88,9 @@ public class TestActions {
 			System.out.println("element:" + element + "  is displayed:" + element.isDisplayed());
 
 			SupportLib.moveToElement(driver, element);
-			priScreenshotPath = SupportLib.takeElementScreenShot(driver,element, actionId, stepNo + "_pre");
+			priScreenshotPath = SupportLib.takeScreenShot(driver, actionId, stepNo + "_pre");
 
-			ElemntScreenshotPath = SupportLib.takeElementScreenShot(driver,element, actionId, stepNo + "_pre");
-
-
+			ElemntScreenshotPath = SupportLib.takeElementScreenShot(driver, element, actionId, stepNo + "_Element");
 
 			if (element.getTagName().contains("span") || element.getTagName().contains("svg")) {
 
@@ -116,18 +112,14 @@ public class TestActions {
 			Thread.sleep(5000);
 			postScreenshotPath = SupportLib.takeScreenShot(driver, actionId, stepNo + "_post");
 
-			
-		
-//		
-//		Mat img2=	SupportLib.bufferedImageToMat(SupportLib.loadImage(postScreenshotPath));
-//
-//		
-//		Mat img1=	SupportLib.bufferedImageToMat(SupportLib.loadImage(priScreenshotPath));
-//
-//			long diff =SupportLib.findDiffPercentbeforConverting(img1,img2);
-//			
-//			System.out.println("diffrence is "+diff);
-			
+			Mat img2 = SupportLib.bufferedImageToMat(SupportLib.loadImage(postScreenshotPath));
+
+			Mat img1 = SupportLib.bufferedImageToMat(SupportLib.loadImage(priScreenshotPath));
+
+			long diff = SupportLib.findDiffPercentbeforConverting(img1, img2);
+
+			System.out.println("diffrence is " + diff);
+
 			ExtentHTML.pass(stepNo, actionId, "using selector  " + selector + " click performed sucessfully",
 					priScreenshotPath, postScreenshotPath);
 
@@ -242,8 +234,8 @@ public class TestActions {
 
 		postScreenshotPath = SupportLib.takeScreenShot(driver, actionId, "masterpass" + "_post");
 
-		
 		// blur event to clock search dropdowns
+
 		// SupportLib.blurEvent(driver, element);
 
 	}
