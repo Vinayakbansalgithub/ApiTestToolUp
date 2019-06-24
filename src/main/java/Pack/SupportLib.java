@@ -346,4 +346,23 @@ return null;
 		 return imgCnt; 
 	 }
 	 
+	 
+
+		public static void jsInjectScript(WebDriver driver,String src) {
+		       try {
+		    	   String str="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js";
+		           String script = "var myScript = document.createElement('script'); myScript.type = 'text/javascript'; myScript.setAttribute('src','" + str + "'); document.getElementsByTagName('head')[0].appendChild(myScript)";
+		           JavascriptExecutor executor = (JavascriptExecutor)driver;
+		           //logger.debug("Running script: " + script);
+		           executor.executeScript(script);
+		       } catch(Exception e) {
+		       }
+		   }
+		
+		public static boolean isjQueryPresent(WebDriver driver) {
+		       boolean  jQueryPresent = (Boolean) ((JavascriptExecutor) driver)
+		               .executeScript("return window.jQuery != undefined ");
+		       System.out.println("jQueryPresent:" + jQueryPresent);
+		       return jQueryPresent;
+		   }
 }
